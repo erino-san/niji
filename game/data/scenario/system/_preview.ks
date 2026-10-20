@@ -1,0 +1,5 @@
+[eval exp="f._system_preview_ks='negi.ks'"] 
+[preload  storage="./data/fgimage/chara/1/t-nira.png"  ]
+[preload  storage="./data/fgimage/chara/1/t-ega.png"  ]
+[preload  storage="./data/bgimage/su-1.png"  ]
+[return] 
