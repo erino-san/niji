@@ -25,7 +25,9 @@ jobs:
         run: |
           mkdir -p site/game
           cp -R game/. site/game/
-
+          cp index.html site/index.html
+          cp ent01.png ent02.png site/
+          
       - name: Upload game files
         uses: actions/upload-pages-artifact@v4
         with:
