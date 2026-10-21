@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あそぶ</title>
+
+  <style>
+    :root {
+      --background: #ccccff;
+      --text: #322068;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        "Yu Gothic", "Hiragino Kaku Gothic ProN",
+        Meiryo, sans-serif;
+    }
+
+    main {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10vh 20px 48px;
+    }
+
+    /* 注意書き・説明文 */
+    .notice {
+      width: min(100%, 440px);
+      min-height: 420px;
+      font-size: 14px;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .notice p {
+      margin: 0 0 1em;
+    }
+
+    .notice .creator {
+      margin-top: 1.2em;
+    }
+
+    .notice .howto {
+      margin-top: 1.8em;
+    }
+
+    .notice .howto p {
+      margin-bottom: 0.8em;
+    }
+
+    /* あそぶリンク */
+    .play-link {
+      display: block;
+      width: 108px;
+      flex-shrink: 0;
+      margin-top: 24px;
+      border-radius: 50%;
+      line-height: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .play-link img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.2s ease;
+    }
+
+    /* マウスオーバー・キーボード操作 */
+    .play-link:hover img,
+    .play-link:focus-visible img {
+      transform: scale(1.06);
+    }
+
+    .play-link:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 6px;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 7vh 24px 36px;
+      }
+
+      .notice {
+        min-height: auto;
+        font-size: 13px;
+        line-height: 1.85;
+      }
+
+      .play-link {
+        width: 96px;
+        margin-top: 32px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .play-link img {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="notice">
+      <p>
+        本作品は、ANYCOLOR株式会社および「にじさんじ」公式とは一切関係のない、個人による非公式の二次創作作品です。<br>
+        原作者様・関係者様とは一切関係ありません。本作品の内容に関するお問い合わせは、制作者までお願いいたします。<br>
+        本作品には、制作者独自の解釈・表現が含まれます。二次創作作品であることをご理解のうえ、お楽しみください。<br>
+        なお、本作品および本作品に使用している素材の無断転載・無断利用はご遠慮ください。
+      </p>
+
+      <p class="creator">制作者：@erino_RF</p>
+
+      <div class="howto">
+        <p>【遊び方】<br>
+
+          画像表示後クリックして頂くとメニューが出ます
+        </p>
+
+        <p>非常になんでも大丈夫な方向けです</p>
+
+        <p>大丈夫そうでしたら下のあそぶボタンからどうぞ</p>
+      </div>
+    </section>
+
+    <a
+      class="play-link"
+      href="https://erino-san.github.io/niji/game/"
+      aria-label="あそぶ・ゲームを開始する"
+    >
+      <img
+        src="https://erino-san.github.io/niji/ent01.png"
+        alt="あそぶ"
+        data-normal="https://erino-san.github.io/niji/ent01.png"
+        data-hover="https://erino-san.github.io/niji/ent02.png"
+      >
+    </a>
+  </main>
+
+  <script>
+    const playImage = document.querySelector(".play-link img");
+
+    // 先に読み込んでおき、切り替え時の遅延を軽減
+    const hoverImage = new Image();
+    hoverImage.src = playImage.dataset.hover;
+
+    // マウスオーバー時に画像を切り替える
+    const playLink = document.querySelector(".play-link");
+
+    playLink.addEventListener("mouseenter", () => {
+      playImage.src = playImage.dataset.hover;
+    });
+
+    playLink.addEventListener("mouseleave", () => {
+      playImage.src = playImage.dataset.normal;
+    });
+
+    // キーボードでフォーカスした場合にも切り替える
+    playLink.addEventListener("focus", () => {
+      playImage.src = playImage.dataset.hover;
+    });
+
+    playLink.addEventListener("blur", () => {
+      playImage.src = playImage.dataset.normal;
+    });
+  </script>
+</body>
+</html>
